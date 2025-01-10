@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Produk</title>
+</head>
+<body>
+    <h1>Edit Produk</h1>
+    <form action="/products/<%= product._id %>?_method=PUT" method="POST">
+        <label for="nama">Nama Produk:</label>
+        <input type="text" id="nama" name="nama" value="<%= product.nama %>" required>
+        <br>
+        <label for="harga">Harga:</label>
+        <input type="number" id="harga" name="harga" value="<%= product.harga %>" required>
+        <br>
+        <label for="jml_stok">Jumlah Stok:</label>
+        <input type="number" id="jml_stok" name="jml_stok" value="<%= product.jml_stok %>" required>
+        <br>
+        <label for="category">Kategori:</label>
+        <select id="category" name="category" required>
+            <option value="">Pilih Kategori</option>
+            <% categories.forEach(category => { %>
+                <option value="<%= category._id %>" <%= category._id.equals(product.category) ? 'selected' : '' %>><%= category.nama %></option>
+            <% }) %>
+        </select>
+        <br>
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

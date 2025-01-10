@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Daftar Produk</title>
+  </head>
+  <body>
+    <h1>Daftar Produk</h1>
+    <a href="/products/new">Tambah Produk Baru</a>
+    <ul>
+      <% products.forEach(product => { %>
+      <li>
+        <%= product.nama %> - <%= product.harga %> - <%= product.category.nama
+        %>
+        <a href="/products/<%= product._id %>/edit">Edit</a>
+        <form
+          action="/products/<%= product._id %>/delete"
+          method="POST"
+          style="display: inline"
+        >
+          <input type="hidden" name="_method" value="DELETE" />
+          <button type="submit">Hapus</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
+  </body>
+</html>
